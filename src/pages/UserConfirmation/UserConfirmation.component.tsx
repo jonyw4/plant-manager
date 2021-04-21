@@ -1,7 +1,9 @@
 import React from "react";
-import { Text, Button, TextInput, Container } from "../../components";
+import { useNavigation } from "@react-navigation/native";
+import { Text, Button, Container } from "../../components";
 
 export function UserConfirmationPage() {
+  const { navigate } = useNavigation();
   return (
     <Container maxHeight={400}>
       <Text variant="heading">Oi! 👋</Text>
@@ -9,7 +11,7 @@ export function UserConfirmationPage() {
       <Text>
         Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
       </Text>
-      <Button>Começar</Button>
+      <Button onPress={() => navigate("AddPlant")}>Começar</Button>
     </Container>
   );
 }

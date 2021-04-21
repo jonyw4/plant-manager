@@ -2,8 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import colors from "../styles/colors";
-import { UserIdentificationPage, WelcomePage } from "../pages";
-import { UserConfirmationPage } from "../pages/UserConfirmation";
+import * as Pages from "../pages";
 
 const StackRoutes = createStackNavigator();
 
@@ -18,14 +17,21 @@ export function Routes() {
           },
         }}
       >
-        <StackRoutes.Screen name="Welcome" component={WelcomePage} />
+        <StackRoutes.Screen 
+          name="Welcome" 
+          component={Pages.WelcomePage} 
+        />
         <StackRoutes.Screen
           name="UserConfirmation"
-          component={UserConfirmationPage}
+          component={Pages.UserConfirmationPage}
         />
         <StackRoutes.Screen
           name="UserIdentification"
-          component={UserIdentificationPage}
+          component={Pages.UserIdentificationPage}
+        />
+        <StackRoutes.Screen 
+          name="AddPlant" 
+          component={Pages.AddPlant} 
         />
       </StackRoutes.Navigator>
     </NavigationContainer>
