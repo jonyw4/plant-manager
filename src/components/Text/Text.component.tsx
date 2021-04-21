@@ -3,10 +3,25 @@ import {
   Text as NativeText,
 } from "react-native";
 import { TextProps } from "./Text.props";
-import { styles as textStyles } from "./Text.style";
+import { variantStyles, textAlignStyles, weightStyles } from "./Text.style";
 
-export function Text({ children, style, variant = "body" }: TextProps) {
+export function Text({
+  children,
+  style,
+  variant = "body",
+  align,
+  weight,
+}: TextProps) {
   return (
-    <NativeText style={[textStyles[variant], style]}>{children}</NativeText>
+    <NativeText
+      style={[
+        variantStyles[variant],
+        align && textAlignStyles[align],
+        weight && weightStyles[weight],
+        style,
+      ]}
+    >
+      {children}
+    </NativeText>
   );
 }
