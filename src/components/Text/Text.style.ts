@@ -4,19 +4,28 @@ import {
 import colors from "../../styles/colors";
 
 export const styles = StyleSheet.create({
-  title: {
+  heading: {
+    fontFamily: "Jost_600SemiBold",
     fontSize: 32,
-    fontWeight: "bold",
+    lineHeight: 38,
+    fontWeight: "600",
     color: colors.heading,
     textAlign: "center",
   },
-  subtitle: {
-    color: colors.body_light,
-    fontSize: 18,
-    paddingHorizontal: 20,
+  title: {
+    fontFamily: "Jost_600SemiBold",
+    fontSize: 24,
+    fontWeight: "600",
+    color: colors.heading,
     textAlign: "center",
   },
   body: {
-    color: colors.body_light,
-  },
+    fontFamily: "Jost_400Regular",
+    color: colors.body_dark,
+    fontWeight: "400",
+    fontSize: 17,
+    lineHeight: 25,
+    paddingHorizontal: 20,
+    textAlign: "center",
+  }
 });
