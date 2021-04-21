@@ -5,10 +5,11 @@ export const createStyles = ({ maxHeight }: ContainerProps) =>
   StyleSheet.create({
     root: {
       flex: 1,
-      alignItems: "center"
+      alignItems: "center",
     },
     outer: {
       flex: 1,
+      width: "100%",
       justifyContent: "center",
       paddingVertical: 80,
       paddingHorizontal: 32,
