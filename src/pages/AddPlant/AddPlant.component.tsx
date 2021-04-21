@@ -1,26 +1,33 @@
 import React from "react";
 import { View } from "react-native";
-import { Container, Text } from "../../components";
+import { Container, Text, Header, RadioGroup } from "../../components";
 
 export function AddPlant() {
-  const userName = "Jony"
   return (
-    <Container>
-      <View>
-        <Text variant="title">
-          <Text weight="regular" variant="title">
-            Olá,{" "}
+    <View style={{ flex: 1, alignContent: "center" }}>
+      <Container>
+        <Header title="Olá" subtitle="Jony" />
+        <View style={{ width: "100%", marginTop: 20 }}>
+          <Text weight="bold" align="left">
+            Em qual ambiente
           </Text>
-          {userName}
-        </Text>
+          <Text align="left">você quer colocar sua planta?</Text>
+        </View>
+      </Container>
+      <View style={{ marginLeft: 32 }}>
+        <RadioGroup
+          options={[
+            { label: "Sala", value: "sala" },
+            { label: "Quarto", value: "quarto" },
+            { label: "Cozinha", value: "cozinha" },
+            { label: "Banheiro", value: "banheiro" },
+            { label: "Sacada", value: "sacada" },
+          ]}
+        />
       </View>
-
-      <Text align="left">
-        <Text weight="bold" align="left">
-          Em qual ambiente
-        </Text>{" "}
-        você quer colocar sua planta?
-      </Text>
-    </Container>
+      <Container>
+        <Text>Conteúdo</Text>
+      </Container>
+    </View>
   );
 }
