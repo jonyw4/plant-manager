@@ -10,8 +10,11 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 16,
     margin: 10,
-    paddingHorizontal: 40,
+    width: 231,
     height: 56
+  },
+  sizeBlock: {
+    alignSelf: 'stretch',
   },
   text: {
     color: colors.white,
