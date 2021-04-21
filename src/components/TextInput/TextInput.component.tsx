@@ -21,7 +21,11 @@ export function TextInput({style, ...props}: TextInputProps) {
   }
   return (
     <NativeTextInput
-      style={[textInputStyles.root, style, isFocused && textInputStyles.isFocused]}
+      style={[
+        textInputStyles.root,
+        isFocused && textInputStyles.focused,
+        style
+      ]}
       {...props}
       onBlur={onBlur}
       onFocus={onFocus}

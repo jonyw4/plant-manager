@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     width: "100%",
   },
-  isFocused: {
-    borderColor: colors.green_dark,
+  focused: {
+    borderColor: colors.green,
   },
 });
