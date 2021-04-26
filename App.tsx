@@ -3,12 +3,12 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Jost_400Regular, Jost_600SemiBold } from "@expo-google-fonts/jost";
 import { Routes } from './src/routes';
 import { ServicesContext } from './src/contexts';
-import { PlantServiceImpl, EnvironmentServiceImpl } from './src/infra';
+import { PlantServiceInMemory, EnvironmentServiceInMemory } from './src/infra';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Jost_400Regular, Jost_600SemiBold });
-  const plantService = new PlantServiceImpl();
-  const environmentService = new EnvironmentServiceImpl();
+  const plantService = new PlantServiceInMemory();
+  const environmentService = new EnvironmentServiceInMemory();
 
   if(!fontsLoaded){
     return (
