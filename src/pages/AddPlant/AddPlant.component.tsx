@@ -1,33 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
-import { Container, Text, Header, RadioGroup } from "../../components";
+import { FlatList } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { SvgFromUri } from 'react-native-svg';
+import { Container, Text, Header, RadioGroup, Card } from "../../components";
+import { usePlants, useEnvironments } from "../../hooks";
 
-export function AddPlant() {
+export function AddPlantPage() {
+  const [environment, setEnvironment] = React.useState<string>();
+  const { data: environments, isLoading: isLoadingEnvironments } = useEnvironments();
+  const { isLoading: isLoadingPlants, data: plants } = usePlants(environment);
+  
+  if (isLoadingEnvironments || isLoadingPlants) {
+    // TODO: Loading
+    return null;
+  }
+
+  if(!plants || !environments){
+    // TODO: Error
+    return null;
+  }
+
   return (
-    <View style={{ flex: 1, alignContent: "center" }}>
-      <Container>
+    <SafeAreaView style={{ flex: 1, justifyContent: "flex-start" }}>
+      <Container
+        paddingVertical={30}
+        paddingBottom={0}
+        flexBasis="auto"
+        flexGrow={0}
+        alignItems="flex-start"
+      >
         <Header title="Olá" subtitle="Jony" />
-        <View style={{ width: "100%", marginTop: 20 }}>
-          <Text weight="bold" align="left">
-            Em qual ambiente
-          </Text>
-          <Text align="left">você quer colocar sua planta?</Text>
-        </View>
+        <Text weight="bold" align="left">
+          Em qual ambiente
+        </Text>
+        <Text align="left">você quer colocar sua planta?</Text>
       </Container>
+
       <View style={{ marginLeft: 32 }}>
         <RadioGroup
-          options={[
-            { label: "Sala", value: "sala" },
-            { label: "Quarto", value: "quarto" },
-            { label: "Cozinha", value: "cozinha" },
-            { label: "Banheiro", value: "banheiro" },
-            { label: "Sacada", value: "sacada" },
-          ]}
+          onChange={(value) => setEnvironment(value)}
+          options={environments.map((environment) => ({
+            label: environment.title,
+            value: environment.id,
+          }))}
         />
       </View>
-      <Container>
-        <Text>Conteúdo</Text>
+      <Container paddingVertical={0}>
+        <FlatList
+          data={plants}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          renderItem={({ item: plant }) => (
+            <Card key={plant.id} title={plant.name}>
+              <SvgFromUri uri={plant.photo}  height={80} />
+            </Card>
+          )}
+        />
       </Container>
-    </View>
+    </SafeAreaView>
   );
 }

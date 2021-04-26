@@ -29,9 +29,9 @@ export function Routes() {
           name="UserIdentification"
           component={Pages.UserIdentificationPage}
         />
-        <StackRoutes.Screen 
-          name="AddPlant" 
-          component={Pages.AddPlant} 
+        <StackRoutes.Screen
+          name="AddPlant"
+          component={Pages.AddPlantPage}
         />
       </StackRoutes.Navigator>
     </NavigationContainer>
