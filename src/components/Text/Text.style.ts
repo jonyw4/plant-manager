@@ -25,7 +25,6 @@ export const variantStyles = StyleSheet.create({
     fontWeight: "400",
     fontSize: 17,
     lineHeight: 25,
-    paddingHorizontal: 20,
     textAlign: "center",
   }
 });
