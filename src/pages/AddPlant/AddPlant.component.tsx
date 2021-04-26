@@ -39,6 +39,7 @@ export function AddPlantPage() {
 
       <View style={{ marginLeft: 32 }}>
         <RadioGroup
+          defaultValue={environment}
           onChange={(value) => setEnvironment(value)}
           options={environments.map((environment) => ({
             label: environment.title,
