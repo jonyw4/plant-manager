@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 32,
     paddingHorizontal: 10,
     alignItems: "center",
-    margin: 8
+    justifyContent: 'center'
+  },
+  text: {
+    marginVertical: 16
   }
 });
