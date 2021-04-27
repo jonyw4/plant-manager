@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
   },
   sizeBlock: {
     alignSelf: 'stretch',
+    width: '100%'
   },
   text: {
     color: colors.white,
