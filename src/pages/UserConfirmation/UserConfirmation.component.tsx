@@ -11,7 +11,7 @@ export function UserConfirmationPage() {
       <Text>
         Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
       </Text>
-      <Button onPress={() => navigate("AddPlant")}>Começar</Button>
+      <Button onPress={() => navigate("PlantSelectToSave")}>Começar</Button>
     </Container>
   );
 }

@@ -17,10 +17,7 @@ export function Routes() {
           },
         }}
       >
-        <StackRoutes.Screen 
-          name="Welcome" 
-          component={Pages.WelcomePage} 
-        />
+        <StackRoutes.Screen name="Welcome" component={Pages.WelcomePage} />
         <StackRoutes.Screen
           name="UserConfirmation"
           component={Pages.UserConfirmationPage}
@@ -30,9 +27,10 @@ export function Routes() {
           component={Pages.UserIdentificationPage}
         />
         <StackRoutes.Screen
-          name="AddPlant"
-          component={Pages.AddPlantPage}
+          name="PlantSelectToSave"
+          component={Pages.PlantSelectToSave}
         />
+        <StackRoutes.Screen name="PlantSave" component={Pages.PlantSave} />
       </StackRoutes.Navigator>
     </NavigationContainer>
   );
