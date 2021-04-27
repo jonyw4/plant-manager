@@ -14,6 +14,7 @@ export function RadioGroup({ options, defaultValue, onChange }: RadioGroupProps)
     <RadioGroupContext.Provider value={state}>
       <FlatList
         data={options}
+        keyExtractor={(item) => String(item.value)}
         renderItem={({ item: option }) => (
           <Radio
             key={option.value}
