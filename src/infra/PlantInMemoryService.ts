@@ -2,7 +2,7 @@ import { PlantService } from "../data";
 import { Plant, TimeInterval, WaterTimeIntervals } from "../domain";
 import * as data from "./fakeData";
 
-export class PlantServiceInMemory implements PlantService {
+export class PlantInMemoryService implements PlantService {
   async getPlant(id: number): Promise<Plant | undefined> {
     const apiPlant = data.plants.find((plant) => plant.id === id)
     if(!apiPlant){

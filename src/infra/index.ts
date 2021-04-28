@@ -1,2 +1,2 @@
-export * from './EnvironmentServiceInMemory';
-export * from './PlantServiceInMemory';
+export * from './EnvironmentInMemoryService';
+export * from './PlantInMemoryService';
