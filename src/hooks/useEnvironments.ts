@@ -3,5 +3,5 @@ import { useServices } from "./useServices";
 
 export function useEnvironments() {
   const { environmentService } = useServices();
-  return useFetch(environmentService.getEnvironments);
+  return useFetch(() => environmentService.getEnvironments());
 }
