@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native'
 import { Text, Button, TextInput, Container } from "../../components";
 import { useUseCases } from "../../hooks/useUseCases";
 
 export function UserIdentificationPage() {
+  const [userName, setUserName] = useState<string>('');
   const { navigate } = useNavigation();
   const { saveUser } = useUseCases()
   const handleOnPressButton = async () => {
-    const response = await saveUser.execute('nome')
+    await saveUser.execute(userName);
     navigate("UserConfirmation");
   }
   return (
     <Container maxHeight={400} dismissKeyboardOnTouch>
       <Text variant="heading">😊</Text>
       <Text variant="title">Como podemos {"\n"} chamar você?</Text>
-      <TextInput />
+      <TextInput onChangeText={(text) => setUserName(text)} />
       <Button onPress={() => handleOnPressButton()}>Confirmar</Button>
     </Container>
   );
