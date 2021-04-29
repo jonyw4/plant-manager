@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgFromUri } from 'react-native-svg';
 import { Container, Text, Header, RadioGroup, Card } from "../../components";
 import { Plant } from "../../domain";
-import { usePlants, useEnvironments } from "../../hooks";
+import { usePlants, useEnvironments, useUser } from "../../hooks";
 
 export function PlantSelectToSave() {
   const [environment, setEnvironment] = React.useState<string>();
@@ -15,14 +15,15 @@ export function PlantSelectToSave() {
     isLoading: isLoadingEnvironments,
   } = useEnvironments();
   const { isLoading: isLoadingPlants, data: plants } = usePlants(environment);
-  const navigation = useNavigation();
-
-  if (isLoadingEnvironments || isLoadingPlants) {
+  const { isLoading: isLoadingUser, data: user } = useUser();
+  const navigation = useNavigation()
+  
+  if (isLoadingEnvironments || isLoadingPlants || isLoadingUser) {
     // TODO: Loading
     return null;
   }
 
-  if (!plants || !environments) {
+  if (!plants || !environments || !user) {
     // TODO: Error
     return null;
   }
@@ -44,7 +45,7 @@ export function PlantSelectToSave() {
         flexGrow={0}
         alignItems="flex-start"
       >
-        <Header title="Olá" subtitle="Jony" />
+        <Header title="Olá" subtitle={user.name} />
         <Text weight="bold" align="left">
           Em qual ambiente
         </Text>

@@ -7,7 +7,7 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native'
 
 export function WelcomePage() {
-  const {navigate} = useNavigation()
+  const { navigate } = useNavigation()
   return (
     <Container>
       <Text variant="heading">
