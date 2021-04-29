@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserRepository } from "../data";
-import { User, Plant } from "../domain";
+import { User } from "../domain";
 
 export class UserStorageRepository implements UserRepository {
   async getCurrentUser(): Promise<User | undefined> {
@@ -18,5 +18,4 @@ export class UserStorageRepository implements UserRepository {
       name: userName
     }
   }
-  
 }
