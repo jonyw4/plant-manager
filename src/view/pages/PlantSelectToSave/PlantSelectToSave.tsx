@@ -26,7 +26,7 @@ export function PlantSelectToSave() {
   const { isLoading: isLoadingPlants, data: plants } = usePlants({
     paginationOptions: {
       page,
-      limit: 10
+      limit: 6
     }, 
     environment
   });
@@ -37,12 +37,13 @@ export function PlantSelectToSave() {
     return <Loading />;
   }
 
-  if (!environments || !plants || !user) {
+  if (!environments || !user) {
     // TODO: Error
     return null;
   }
 
   function handleOnChangeEnvironment(value: any) {
+    setPage(1);
     setEnvironment(value);
   }
 
@@ -50,7 +51,7 @@ export function PlantSelectToSave() {
     navigation.navigate("PlantSave", { plant });
   }
 
-   function handleOnFetchMorePlant(distance: number) {
+  function handleOnFetchMorePlant(distance: number) {
      if (distance < 1) return;
      if (plants && page >= plants.pagination.totalPages) return;
 
@@ -85,7 +86,7 @@ export function PlantSelectToSave() {
       </View>
       <Container paddingVertical={0}>
         <FlatList
-          data={plants.data}
+          data={plants?.data || []}
           showsVerticalScrollIndicator={false}
           numColumns={2}
           keyExtractor={(item) => String(item.id)}
@@ -103,7 +104,7 @@ export function PlantSelectToSave() {
             handleOnFetchMorePlant(distanceFromEnd)
           }
           ListFooterComponent={
-            isLoadingPlants ? <ActivityIndicator color={colors.green} /> : <></>
+            isLoadingPlants ? <ActivityIndicator color={colors.green} size={40}/> : <></>
           }
         />
       </Container>
