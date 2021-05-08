@@ -31,6 +31,7 @@ export function Routes() {
           component={Pages.PlantSelectToSave}
         />
         <StackRoutes.Screen name="PlantSave" component={Pages.PlantSave} />
+        <StackRoutes.Screen name="UserPlants" component={Pages.UserPlants} />
       </StackRoutes.Navigator>
     </NavigationContainer>
   );
