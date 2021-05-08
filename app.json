@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint": "./src/App.tsx",
     "name": "plantmanager",
     "slug": "plantmanager",
     "version": "1.0.0",

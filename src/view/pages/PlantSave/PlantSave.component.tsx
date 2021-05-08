@@ -11,8 +11,8 @@ import {
   waterTipsStyle,
   dateTimePickerStyle,
 } from "./PlantSave.styles";
-import waterdrop from "../../assets/waterdrop.png";
-import { useUseCases } from "../../hooks";
+import waterdrop from "../../../assets/waterdrop.png";
+import { useServices } from "../../hooks";
 
 interface Params {
   plant: Plant;
@@ -23,7 +23,7 @@ export function PlantSave() {
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
   const navigation = useNavigation();
   const route = useRoute();
-  const { addUserPlantToCurrentUser } = useUseCases();
+  const { userPlantRepository } = useServices();
   const { plant } = route.params as Params;
 
   function handleOpenDatetimePickerForAndroid() {
@@ -45,8 +45,10 @@ export function PlantSave() {
 
   async function handleSave() {
     try {
-      const response = await addUserPlantToCurrentUser.execute(plant.id, selectedDateTime);
-      console.log(response); 
+      const response = await userPlantRepository.addPlantToCurrentUser(
+        plant.id,
+        selectedDateTime
+      );
       // navigation.navigate("Confirmation", {
       //   title: "Tudo certo",
       //   subtitle: `Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.`,

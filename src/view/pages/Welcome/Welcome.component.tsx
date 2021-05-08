@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "react-native";
-import wateringImg from "../../assets/watering.png";
+import wateringImg from "../../../assets/watering.png";
 import { Text, Button, Container } from "../../components";
 import { styles } from './Welcome.style'
 import { Feather } from "@expo/vector-icons";

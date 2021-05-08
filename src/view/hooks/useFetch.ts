@@ -8,7 +8,7 @@ export interface UseFetchResponse<T> {
 
 export function useFetch<T>(
     fetch: (options: any) => Promise<T>, 
-    options?: string
+    options?: any
   ): UseFetchResponse<T> {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | undefined>();

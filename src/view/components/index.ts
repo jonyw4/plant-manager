@@ -7,3 +7,4 @@ export * from "./Radio";
 export * from "./RadioGroup";
 export * from './Card';
 export * from "./VerticalContainer";
+export * from "./Loading";

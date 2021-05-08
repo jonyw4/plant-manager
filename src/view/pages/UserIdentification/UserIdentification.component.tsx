@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native'
 import { Text, Button, TextInput, Container } from "../../components";
-import { useUseCases } from "../../hooks/useUseCases";
+import { useServices } from "../../hooks";
 
 export function UserIdentificationPage() {
   const [userName, setUserName] = useState<string>('');
   const { navigate } = useNavigation();
-  const { saveUser } = useUseCases()
+  const { userRepository } = useServices()
   const handleOnPressButton = async () => {
-    await saveUser.execute(userName);
+    await userRepository.saveUser(userName);
     navigate("UserConfirmation");
   }
   return (

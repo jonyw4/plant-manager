@@ -1,11 +1,13 @@
+import sleep from "sleep-promise";
 import { PlantService } from "../data";
+import { Pagination, PaginationOptions } from "../data/protocols/Pagination";
 import { Plant, TimeInterval, WaterTimeIntervals } from "../domain";
 import * as data from "./fakeData";
 
 export class PlantInMemoryService implements PlantService {
   async getPlant(id: number): Promise<Plant | undefined> {
-    const apiPlant = data.plants.find((plant) => plant.id === id)
-    if(!apiPlant){
+    const apiPlant = data.plants.find((plant) => plant.id === id);
+    if (!apiPlant) {
       return undefined;
     }
     return this.mapApiPlantToDomain(apiPlant);
@@ -16,10 +18,20 @@ export class PlantInMemoryService implements PlantService {
       title: frequency.title,
     }));
   }
-  async getPlants(environment?: string): Promise<Plant[]> {
+  async getPlants(
+    { limit = 1, page: currentPage = 1 }: PaginationOptions,
+    environment?: string
+  ): Promise<Pagination<Plant[]>> {
     let plants: Plant[] = data.plants.map((plant) =>
       this.mapApiPlantToDomain(plant)
     );
+
+    const totalItems = plants.length;
+    const totalPages = totalItems / limit;
+    const start = limit * currentPage;
+    const end = start + limit;
+
+    plants = plants.slice(start - 1, end - 1);
 
     if (environment) {
       plants = plants.filter((plant) =>
@@ -28,7 +40,14 @@ export class PlantInMemoryService implements PlantService {
         )
       );
     }
-    return plants;
+    return {
+      pagination: {
+        total: totalItems,
+        currentPage,
+        totalPages,
+      },
+      data: plants,
+    };
   }
   private mapApiPlantToDomain(apiPlant: typeof data.plants[number]): Plant {
     return {

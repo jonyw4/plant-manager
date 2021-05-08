@@ -1,13 +1,14 @@
 import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Jost_400Regular, Jost_600SemiBold } from "@expo-google-fonts/jost";
-import { Routes } from './src/view/routes';
-import { ServicesContext } from './src/view/contexts';
-import { PlantInMemoryService, EnvironmentInMemoryService, UserPlantExpoNotificationService } from './src/infra';
-import { UserPlantStorageRepository } from './src/infra/UserPlantStorageRepository';
-import { UserStorageRepository } from './src/infra/UserStorageRepository';
+import { Routes } from './view/routes';
+import { ServicesContext } from './view/contexts';
+import { PlantInMemoryService, EnvironmentInMemoryService, UserPlantExpoNotificationService } from './infra';
+import { UserPlantStorageRepository } from './infra/UserPlantStorageRepository';
+import { UserStorageRepository } from './infra/UserStorageRepository';
+import { registerRootComponent } from 'expo';
 
-export default function App() {
+function App() {
   const [fontsLoaded] = useFonts({ Jost_400Regular, Jost_600SemiBold });
 
   // SERVICES
@@ -40,3 +41,5 @@ export default function App() {
     </ServicesContext.Provider>
   );
 }
+
+export default registerRootComponent(App)

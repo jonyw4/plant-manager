@@ -1,29 +1,43 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { View } from "react-native";
+import React from "react";
+import { ActivityIndicator, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgFromUri } from 'react-native-svg';
-import { Container, Text, Header, RadioGroup, Card } from "../../components";
+import {
+  Container,
+  Text,
+  Header,
+  RadioGroup,
+  Card,
+  Loading
+} from "../../components";
 import { Plant } from "../../../domain";
 import { usePlants, useEnvironments, useUser } from "../../hooks";
+import colors from "../../styles/colors";
 
 export function PlantSelectToSave() {
   const [environment, setEnvironment] = React.useState<string>();
+  const [page, setPage] = React.useState(1);
   const {
     data: environments,
     isLoading: isLoadingEnvironments,
   } = useEnvironments();
-  const { isLoading: isLoadingPlants, data: plants } = usePlants(environment);
+  const { isLoading: isLoadingPlants, data: plants } = usePlants({
+    paginationOptions: {
+      page,
+      limit: 10
+    }, 
+    environment
+  });
   const { isLoading: isLoadingUser, data: user } = useUser();
   const navigation = useNavigation()
   
-  if (isLoadingEnvironments || isLoadingPlants || isLoadingUser) {
-    // TODO: Loading
-    return null;
+  if (isLoadingEnvironments || isLoadingUser) {
+    return <Loading />;
   }
 
-  if (!plants || !environments || !user) {
+  if (!environments || !plants || !user) {
     // TODO: Error
     return null;
   }
@@ -35,6 +49,13 @@ export function PlantSelectToSave() {
   function handleOnPressPlant(plant: Plant) {
     navigation.navigate("PlantSave", { plant });
   }
+
+   function handleOnFetchMorePlant(distance: number) {
+     if (distance < 1) return;
+     if (plants && page >= plants.pagination.totalPages) return;
+
+     setPage((oldValue) => oldValue + 1);
+   }
 
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "flex-start" }}>
@@ -64,7 +85,7 @@ export function PlantSelectToSave() {
       </View>
       <Container paddingVertical={0}>
         <FlatList
-          data={plants}
+          data={plants.data}
           showsVerticalScrollIndicator={false}
           numColumns={2}
           keyExtractor={(item) => String(item.id)}
@@ -77,6 +98,13 @@ export function PlantSelectToSave() {
               <SvgFromUri uri={plant.photo} height={80} />
             </Card>
           )}
+          onEndReachedThreshold={0.1}
+          onEndReached={({ distanceFromEnd }) =>
+            handleOnFetchMorePlant(distanceFromEnd)
+          }
+          ListFooterComponent={
+            isLoadingPlants ? <ActivityIndicator color={colors.green} /> : <></>
+          }
         />
       </Container>
     </SafeAreaView>

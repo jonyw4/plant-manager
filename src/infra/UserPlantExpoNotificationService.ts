@@ -15,10 +15,7 @@ export class UserPlantExpoNotificationService implements UserPlantNotificationSe
         title: "Heeey, 🌱",
         body: `Está na hora de cuidar da sua ${plant.name}`,
         sound: true,
-        priority: Notifications.AndroidNotificationPriority.HIGH,
-        data: {
-          plant,
-        },
+        priority: Notifications.AndroidNotificationPriority.HIGH
       },
       trigger: {
         seconds: seconds < 60 ? 60 : seconds,

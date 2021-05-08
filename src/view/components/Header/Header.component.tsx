@@ -3,7 +3,7 @@ import { View, Image } from "react-native";
 import { Text } from "../Text";
 import { HeaderProps } from "./Header.props";
 import { styles } from './Header.styles';
-import userImg from '../../assets/user.jpg'
+import userImg from '../../../assets/user.jpg'
  
 export function Header({title, subtitle}: HeaderProps) {
   return (
