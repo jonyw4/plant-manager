@@ -1,7 +1,7 @@
 import { Plant } from "./Plant";
 
 export interface UserPlant {
-  id: number;
+  id: string;
   plant: Plant
   nextNotification: Date 
 }

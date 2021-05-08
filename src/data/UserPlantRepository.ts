@@ -6,5 +6,5 @@ export interface UserPlantRepository {
     plantID: number,
     nextNotificationDate: Date
   ): Promise<UserPlant>;
-  removePlantToCurrentUser(id: number): Promise<void>;
+  removePlantToCurrentUser(id: string): Promise<void>;
 }

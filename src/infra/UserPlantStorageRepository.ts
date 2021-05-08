@@ -1,9 +1,10 @@
+import "react-native-get-random-values";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Notifications from "expo-notifications";
 import { PlantService, UserPlantRepository } from "../data";
 import { UserPlantNotificationService } from "../data/UserPlantNotificationService";
 import { UserPlant } from "../domain";
 import { UserPlantModel } from "./models";
+import { v4 as uuidv4 } from "uuid";
 
 export class UserPlantStorageRepository implements UserPlantRepository {
   constructor(
@@ -28,7 +29,7 @@ export class UserPlantStorageRepository implements UserPlantRepository {
     const userPlantModels = data ? (JSON.parse(data) as UserPlantModel[]) : [];
 
     const newUserPlantModel: UserPlantModel = {
-      id: 1,
+      id: uuidv4(),
       nextNotification: nextNotificationDate.toString(),
       notificationID,
       plantID,
@@ -40,29 +41,33 @@ export class UserPlantStorageRepository implements UserPlantRepository {
     ];
 
     await AsyncStorage.setItem(
-      "@plantmanager:plants",
+      "@plantmanager:userPlants",
       JSON.stringify(newUserPlantModels)
     );
 
     return this.mapUserPlantModelToDomain(newUserPlantModel);
   }
-  async removePlantToCurrentUser(id: number): Promise<void> {
+  async removePlantToCurrentUser(id: string): Promise<void> {
     const data = await AsyncStorage.getItem("@plantmanager:userPlants");
     const userPlantModels = data ? (JSON.parse(data) as UserPlantModel[]) : [];
-    const userPlantModel = userPlantModels.find( (userPlantModel) => userPlantModel.id === id)
+    const userPlantModel = userPlantModels.find(
+      (userPlantModel) => userPlantModel.id === id
+    );
 
-     if (!userPlantModel) {
-       throw new Error("Plant not found");
-     }
+    if (!userPlantModel) {
+      throw new Error("Plant not found");
+    }
 
-    await  this.userPlantNotification.cancelSchedule(userPlantModel.notificationID);
+    await this.userPlantNotification.cancelSchedule(
+      userPlantModel.notificationID
+    );
 
     const newUserPlantModels = userPlantModels.filter(
       (userPlantModel) => userPlantModel.id !== id
     );
 
     await AsyncStorage.setItem(
-      "@plantmanager:plants",
+      "@plantmanager:userPlants",
       JSON.stringify(newUserPlantModels)
     );
   }
@@ -70,6 +75,7 @@ export class UserPlantStorageRepository implements UserPlantRepository {
     const jsonStringUserPlantsIDs = await AsyncStorage.getItem(
       "@plantmanager:userPlants"
     );
+
     if (!jsonStringUserPlantsIDs) {
       return [];
     }

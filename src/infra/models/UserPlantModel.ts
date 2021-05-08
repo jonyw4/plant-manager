@@ -1,5 +1,5 @@
 export interface UserPlantModel {
-  id: number
+  id: string
   plantID: number  
   notificationID: string
   nextNotification: string

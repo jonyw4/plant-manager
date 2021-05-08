@@ -22,16 +22,18 @@ export class PlantInMemoryService implements PlantService {
     { limit = 1, page: currentPage = 1 }: PaginationOptions,
     environment?: string
   ): Promise<Pagination<Plant[]>> {
+    await sleep(1000);
+
     let plants: Plant[] = data.plants.map((plant) =>
       this.mapApiPlantToDomain(plant)
     );
 
     const totalItems = plants.length;
-    const totalPages = totalItems / limit;
-    const start = limit * currentPage;
+    const totalPages = Math.round(totalItems / limit);
+    const start = (currentPage * limit) - limit
     const end = start + limit;
 
-    plants = plants.slice(start - 1, end - 1);
+    plants = plants.slice(start, end);
 
     if (environment) {
       plants = plants.filter((plant) =>
