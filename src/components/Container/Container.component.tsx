@@ -4,18 +4,43 @@ import { ContainerProps } from './Container.props'
 import { createStyles } from './Container.styles'
 
 export function Container(props: ContainerProps){
-  const { children, dismissKeyboardOnTouch = false } = props;
-  const styles = createStyles(props);
+  const {
+    children,
+    dismissKeyboardOnTouch = false,
+    justifyContent = "space-between",
+    flexGrow = 1,
+    flexBasis = 1,
+    paddingVertical = 80,
+    paddingBottom = 80,
+    alignItems = "center"
+  } = props;
+  const styles = createStyles({
+    ...props,
+    paddingVertical,
+    paddingBottom,
+    justifyContent,
+    flexBasis,
+    flexGrow,
+    alignItems,
+  });
+
+  const content = (
+    <View style={styles.outer}>
+      <View style={styles.inner}>{children}</View>
+    </View>
+  );
   
   return (
     <SafeAreaView style={styles.root}>
-      <TouchableWithoutFeedback
-        onPress={dismissKeyboardOnTouch ? Keyboard.dismiss : undefined}
-      >
-        <View style={styles.outer}>
-          <View style={styles.inner}>{children}</View>
-        </View>
-      </TouchableWithoutFeedback>
+      {dismissKeyboardOnTouch ? (
+        <TouchableWithoutFeedback
+          onPress={dismissKeyboardOnTouch ? Keyboard.dismiss : undefined}
+        >
+          {content}
+        </TouchableWithoutFeedback>
+      ) : (
+        content
+      )}
     </SafeAreaView>
   );
 }

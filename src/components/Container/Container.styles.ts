@@ -1,23 +1,35 @@
 import { StyleSheet } from "react-native";
 import { ContainerProps } from "./Container.props";
 
-export const createStyles = ({ maxHeight }: ContainerProps) =>
+export const createStyles = ({
+  maxHeight,
+  paddingVertical,
+  justifyContent,
+  flexGrow,
+  flexBasis,
+  alignItems,
+  paddingBottom,
+}: ContainerProps) =>
   StyleSheet.create({
     root: {
-      flex: 1,
+      flexGrow,
+      flexBasis,
       alignItems: "center",
     },
     outer: {
-      flex: 1,
+      flexGrow,
+      flexBasis,
       width: "100%",
       justifyContent: "center",
-      paddingVertical: 80,
+      paddingBottom: paddingBottom,
+      paddingVertical: paddingVertical,
       paddingHorizontal: 32,
     },
     inner: {
-      flex: 1,
+      flexGrow,
+      flexBasis,
       maxHeight,
-      alignItems: "center",
-      justifyContent: "space-around",
+      alignItems: alignItems,
+      justifyContent: justifyContent,
     },
   });
