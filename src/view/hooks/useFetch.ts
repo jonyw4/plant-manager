@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 export interface UseFetchResponse<T> {
   isLoading: boolean;
   data?: T;

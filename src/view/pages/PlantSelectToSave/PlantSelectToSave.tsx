@@ -5,7 +5,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgFromUri } from 'react-native-svg';
 import { Container, Text, Header, RadioGroup, Card } from "../../components";
-import { Plant } from "../../domain";
+import { Plant } from "../../../domain";
 import { usePlants, useEnvironments, useUser } from "../../hooks";
 
 export function PlantSelectToSave() {

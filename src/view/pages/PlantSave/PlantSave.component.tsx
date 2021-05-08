@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { SafeAreaView, View, Image, Platform, Alert } from "react-native";
 import { SvgFromUri } from "react-native-svg";
 import { Button, Text, VerticalContainer } from "../../components";
-import { Plant } from "../../domain";
+import { Plant } from "../../../domain";
 import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 import { format, isBefore } from "date-fns";
 import {
