@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useDeepCompareEffect from "use-deep-compare-effect";
 
 export interface UseFetchResponse<T> {
   isLoading: boolean;
@@ -16,10 +17,11 @@ export function useFetch<T>(
 
   async function updateData() {
     setIsLoading(true);
+    setData(undefined);
     try {
-      const data = await fetch(options);
+      const newData = await fetch(options);
       setIsLoading(false);
-      setData(data);
+      setData(newData);
       setError(undefined);
     } catch (error) {
       setIsLoading(false);
@@ -28,7 +30,9 @@ export function useFetch<T>(
     }
   }
 
-  useEffect(() => {
+  const useEffectFn = typeof options === "object" ? useDeepCompareEffect : useEffect;
+
+  useEffectFn(() => {
     updateData();
   }, [options]);
 
