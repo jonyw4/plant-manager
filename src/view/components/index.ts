@@ -8,3 +8,4 @@ export * from "./RadioGroup";
 export * from './Card';
 export * from "./VerticalContainer";
 export * from "./Loading";
+export * from './Swipeable'
