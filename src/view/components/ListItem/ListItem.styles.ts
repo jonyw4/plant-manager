@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginVertical: 5,
+    justifyContent: "space-between"
   },
 });

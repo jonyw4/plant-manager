@@ -43,7 +43,7 @@ export function UserPlants() {
       }}
     >
       <Container
-        paddingVertical={60}
+        paddingVertical={71}
         paddingBottom={0}
         flexBasis="auto"
         flexGrow={0}
@@ -52,67 +52,70 @@ export function UserPlants() {
         <Header title="Minhas" subtitle="Plantinhas" />
       </Container>
       <Container paddingVertical={30} alignItems="flex-start">
-        <Text variant="heading">Próximas Regadas</Text>
+        <Text variant="title">Próximas Regadas</Text>
         <FlatList
           data={userPlants || []}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
           style={{ width: "100%" }}
           renderItem={({ item: userPlant }) => (
-            <Swipeable
-              swipeContent={
-                <Animated.View>
-                  <View>
-                    <RectButton
-                      style={{
-                        width: 100,
-                        height: "100%",
-                        backgroundColor: colors.red,
-                        borderRadius: 20,
-                        flexDirection: "row",
-                        padding: 20,
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                        position: "relative",
-                      }}
-                      onPress={() => handleOnDeletePlant(userPlant)}
-                    >
-                      <Feather name="trash" size={32} color={colors.white} />
-                    </RectButton>
-                  </View>
-                </Animated.View>
-              }
-            >
-              <ListItem
-                secondaryContent={
-                  <>
-                    <Text
-                      variant="body"
-                      style={{ fontSize: 13, lineHeight: 15 }}
-                    >
-                      Regar às
-                    </Text>
-                    <Text
-                      variant="heading"
-                      style={{ fontSize: 13, lineHeight: 15 }}
-                    >
-                      {format(userPlant.nextNotification, "p", {
-                        locale: ptBR,
-                      })}
-                    </Text>
-                  </>
+            <View style={{marginVertical: 5}}>
+              <Swipeable
+                swipeContent={
+                  <Animated.View>
+                    <View style={{ position: "relative", width: 80 }}>
+                      <RectButton
+                        style={{
+                          width: 120,
+                          height: "100%",
+                          backgroundColor: colors.red,
+                          borderRadius: 20,
+                          flexDirection: "row",
+                          padding: 20,
+                          right: 40,
+                          justifyContent: "flex-end",
+                          alignItems: "center",
+                          position: "relative",
+                        }}
+                        onPress={() => handleOnDeletePlant(userPlant)}
+                      >
+                        <Feather name="trash" size={32} color={colors.white} />
+                      </RectButton>
+                    </View>
+                  </Animated.View>
                 }
               >
-                <SvgFromUri
-                  uri={userPlant.plant.photo}
-                  width={50}
-                  height={50}
-                />
-                <Text weight="bold" style={{ marginLeft: 10 }}>
-                  {userPlant.plant.name}
-                </Text>
-              </ListItem>
-            </Swipeable>
+                <ListItem
+                  secondaryContent={
+                    <>
+                      <Text
+                        variant="body"
+                        style={{ fontSize: 13, lineHeight: 15 }}
+                      >
+                        Regar às
+                      </Text>
+                      <Text
+                        variant="heading"
+                        style={{ fontSize: 13, lineHeight: 15 }}
+                      >
+                        {format(userPlant.nextNotification, "p", {
+                          locale: ptBR,
+                        })}
+                      </Text>
+                    </>
+                  }
+                >
+                  <SvgFromUri
+                    uri={userPlant.plant.photo}
+                    width={50}
+                    height={50}
+                  />
+                  <Text weight="bold" style={{ marginLeft: 10 }}>
+                    {userPlant.plant.name}
+                  </Text>
+                </ListItem>
+              </Swipeable>
+            </View>
           )}
           ListFooterComponent={
             isLoading ? (
