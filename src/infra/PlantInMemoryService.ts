@@ -2,10 +2,13 @@ import sleep from "sleep-promise";
 import { PlantService } from "../data";
 import { Pagination, PaginationOptions } from "../data/protocols/Pagination";
 import { Plant, TimeInterval, WaterTimeIntervals } from "../domain";
+import { IN_MEMORY_AWAIT_TIME } from "./consts";
 import * as data from "./fakeData";
 
 export class PlantInMemoryService implements PlantService {
   async getPlant(id: number): Promise<Plant | undefined> {
+    await sleep(IN_MEMORY_AWAIT_TIME);
+
     const apiPlant = data.plants.find((plant) => plant.id === id);
     if (!apiPlant) {
       return undefined;
@@ -13,6 +16,8 @@ export class PlantInMemoryService implements PlantService {
     return this.mapApiPlantToDomain(apiPlant);
   }
   async getWaterTimeIntervals(): Promise<WaterTimeIntervals[]> {
+    await sleep(IN_MEMORY_AWAIT_TIME);
+    
     return data.plantsWaterFrequencies.map((frequency) => ({
       id: frequency.key as TimeInterval,
       title: frequency.title,
@@ -22,7 +27,7 @@ export class PlantInMemoryService implements PlantService {
     { limit = 1, page: currentPage = 1 }: PaginationOptions,
     environment?: string
   ): Promise<Pagination<Plant[]>> {
-    await sleep(1000);
+    await sleep(IN_MEMORY_AWAIT_TIME);
 
     let plants: Plant[] = data.plants.map((plant) =>
       this.mapApiPlantToDomain(plant)
