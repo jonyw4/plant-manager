@@ -1,1 +1,1 @@
-export * from "./Swipeable.component";
+export * from './Swipeable.component';

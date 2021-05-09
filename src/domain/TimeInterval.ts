@@ -1,1 +1,1 @@
-export type TimeInterval = "day" | "week";
+export type TimeInterval = 'day' | 'week';

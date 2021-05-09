@@ -1,3 +1,3 @@
-import { TextInputProps as NativeTextInputProps } from "react-native";
+import { TextInputProps as NativeTextInputProps } from 'react-native';
 
 export interface TextInputProps extends NativeTextInputProps {}

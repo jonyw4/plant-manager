@@ -11,7 +11,7 @@ import { useServices, useUserPlants } from "../../hooks";
 import colors from "../../styles/colors";
 import { UserPlant } from "../../../domain";
 
-export function UserPlants() {
+export function UserPlantsPage() {
   const { userPlantRepository } = useServices();
   const { isLoading, data: userPlants, fetch: fetchUserPlants } = useUserPlants();
 

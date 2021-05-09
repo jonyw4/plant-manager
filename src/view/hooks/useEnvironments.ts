@@ -1,7 +1,7 @@
-import { useFetch } from "./useFetch";
-import { useServices } from "./useServices";
+import { useFetch } from './useFetch';
+import { useServices } from './useServices';
 
 export function useEnvironments() {
-  const { environmentService } = useServices();
-  return useFetch(() => environmentService.getEnvironments());
+    const { environmentService } = useServices();
+    return useFetch(() => environmentService.getEnvironments());
 }

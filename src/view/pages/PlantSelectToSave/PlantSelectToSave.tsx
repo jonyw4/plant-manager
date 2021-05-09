@@ -12,7 +12,7 @@ import {
 } from "../../components";
 import { useEnvironments, useUser } from "../../hooks";
 
-export function PlantSelectToSave() {
+export function PlantSelectToSavePage() {
   const [environment, setEnvironment] = React.useState<string>();
   const {
     data: environments,

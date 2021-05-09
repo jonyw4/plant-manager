@@ -28,7 +28,7 @@ export function Routes() {
           component={Pages.UserIdentificationPage}
         />
         <StackRoutes.Screen name="PlantSelectToSave" component={TabRoutes} />
-        <StackRoutes.Screen name="PlantSave" component={Pages.PlantSave} />
+        <StackRoutes.Screen name="PlantSave" component={Pages.PlantSavePage} />
         <StackRoutes.Screen name="UserPlants" component={TabRoutes} />
       </StackRoutes.Navigator>
     </NavigationContainer>

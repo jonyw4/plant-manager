@@ -1,6 +1,6 @@
-import { TimeInterval } from "./TimeInterval";
+import { TimeInterval } from './TimeInterval';
 
 export interface WaterTimeIntervals {
-  id: TimeInterval;
-  title: string;
+    id: TimeInterval;
+    title: string;
 }

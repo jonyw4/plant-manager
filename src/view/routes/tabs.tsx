@@ -25,9 +25,10 @@ const TabRoutes: React.FC = () => {
       }}
     >
       <AppTab.Screen
-        name="Nova Planta"
-        component={Pages.PlantSelectToSave}
+        name="PlantSelectToSave"
+        component={Pages.PlantSelectToSavePage}
         options={{
+          tabBarLabel: "Nova Planta",
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons
               name="add-circle-outline"
@@ -39,9 +40,10 @@ const TabRoutes: React.FC = () => {
       />
 
       <AppTab.Screen
-        name="Minhas Plantas"
-        component={Pages.UserPlants}
+        name="UserPlants"
+        component={Pages.UserPlantsPage}
         options={{
+          tabBarLabel: "Minhas Plantas",
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons
               name="format-list-bulleted"

@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  root: {
-    width: '100%',
-    overflow: 'hidden',
-    flexDirection: 'row'
-  },
+    root: {
+        width: '100%',
+        overflow: 'hidden',
+        flexDirection: 'row'
+    }
 });

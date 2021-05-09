@@ -19,7 +19,7 @@ interface Params {
   plant: Plant;
 }
 
-export function PlantSave() {
+export function PlantSavePage() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
   const [isLoading, setIsLoading] = useState(false);

@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  root: {
-    paddingHorizontal: 32,
-  },
+    root: {
+        paddingHorizontal: 32
+    }
 });

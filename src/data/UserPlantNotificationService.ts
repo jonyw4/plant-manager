@@ -1,6 +1,6 @@
-import { Plant } from "../domain";
+import { Plant } from '../domain';
 
 export interface UserPlantNotificationService {
-  schedule(plant: Plant, notificationDate: Date): Promise<string>
-  cancelSchedule(notificationID: string): Promise<void>
+    schedule(plant: Plant, notificationDate: Date): Promise<string>;
+    cancelSchedule(notificationID: string): Promise<void>;
 }
