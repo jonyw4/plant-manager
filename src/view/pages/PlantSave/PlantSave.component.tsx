@@ -13,6 +13,7 @@ import {
 } from "./PlantSave.styles";
 import waterdrop from "../../../assets/waterdrop.png";
 import { useServices } from "../../hooks";
+import { ConfirmationParams } from "../Confirmation/Confirmation.params";
 
 interface Params {
   plant: Plant;
@@ -45,18 +46,18 @@ export function PlantSave() {
 
   async function handleSave() {
     try {
-      const response = await userPlantRepository.addPlantToCurrentUser(
+      await userPlantRepository.addPlantToCurrentUser(
         plant.id,
         selectedDateTime
       );
-      navigation.navigate('UserPlants');
-      // navigation.navigate("Confirmation", {
-      //   title: "Tudo certo",
-      //   subtitle: `Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.`,
-      //   buttonTitle: "Muito obrigado",
-      //   icon: "hug",
-      //   nextScreen: "MyPlants",
-      // });
+      navigation.navigate("Confirmation", {
+        title: "Tudo certo!",
+        subtitle: "",
+        description:
+          "Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.",
+        btnText: "Minhas Plantas",
+        goToPage: "UserPlants"
+      } as ConfirmationParams);
     } catch {
       Alert.alert("Não foi possível salvar. 😢");
     }

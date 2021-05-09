@@ -3,6 +3,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import colors from "../styles/colors";
 import * as Pages from "../pages";
+import TabRoutes from './tabs'
 
 const StackRoutes = createStackNavigator();
 
@@ -19,19 +20,16 @@ export function Routes() {
       >
         <StackRoutes.Screen name="Welcome" component={Pages.WelcomePage} />
         <StackRoutes.Screen
-          name="UserConfirmation"
-          component={Pages.UserConfirmationPage}
+          name="Confirmation"
+          component={Pages.ConfirmationPage}
         />
         <StackRoutes.Screen
           name="UserIdentification"
           component={Pages.UserIdentificationPage}
         />
-        <StackRoutes.Screen
-          name="PlantSelectToSave"
-          component={Pages.PlantSelectToSave}
-        />
+        <StackRoutes.Screen name="PlantSelectToSave" component={TabRoutes} />
         <StackRoutes.Screen name="PlantSave" component={Pages.PlantSave} />
-        <StackRoutes.Screen name="UserPlants" component={Pages.UserPlants} />
+        <StackRoutes.Screen name="UserPlants" component={TabRoutes} />
       </StackRoutes.Navigator>
     </NavigationContainer>
   );
