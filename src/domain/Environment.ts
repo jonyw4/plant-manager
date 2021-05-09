@@ -1,4 +1,4 @@
 export interface Environment {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
