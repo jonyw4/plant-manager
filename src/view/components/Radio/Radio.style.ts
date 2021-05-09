@@ -5,7 +5,7 @@ import colors from "../../styles/colors";
 
 export const radioStyles = StyleSheet.create({
   root: {
-    backgroundColor: colors.shape,
+    backgroundColor: colors.shape_gray,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 16,
