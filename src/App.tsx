@@ -3,9 +3,13 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Jost_400Regular, Jost_600SemiBold } from "@expo-google-fonts/jost";
 import { Routes } from './view/routes';
 import { ServicesContext } from './view/contexts';
-import { PlantInMemoryService, EnvironmentInMemoryService, UserPlantExpoNotificationService } from './infra';
-import { UserPlantStorageRepository } from './infra/UserPlantStorageRepository';
-import { UserStorageRepository } from './infra/UserStorageRepository';
+import {
+  PlantInMemoryService,
+  EnvironmentInMemoryService,
+  UserPlantExpoNotificationService,
+  UserDeviceStorageRepository,
+  UserPlantDeviceStorageRepository,
+} from "./infra";
 import { registerRootComponent } from 'expo';
 
 function App() {
@@ -17,11 +21,11 @@ function App() {
   const userPlantNotificationService = new UserPlantExpoNotificationService();
 
   // REPOSITORIES
-  const userPlantRepository = new UserPlantStorageRepository(
+  const userPlantRepository = new UserPlantDeviceStorageRepository(
     plantService,
     userPlantNotificationService
   );
-  const userRepository = new UserStorageRepository();
+  const userRepository = new UserDeviceStorageRepository();
 
   if(!fontsLoaded){
     return (

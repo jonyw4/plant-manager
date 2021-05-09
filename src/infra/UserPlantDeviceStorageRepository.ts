@@ -6,7 +6,7 @@ import { UserPlant } from "../domain";
 import { UserPlantModel } from "./models";
 import { v4 as uuidv4 } from "uuid";
 
-export class UserPlantStorageRepository implements UserPlantRepository {
+export class UserPlantDeviceStorageRepository implements UserPlantRepository {
   constructor(
     private plantService: PlantService,
     private userPlantNotification: UserPlantNotificationService
