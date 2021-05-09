@@ -5,21 +5,22 @@ export interface UseFetchResponse<T> {
   isLoading: boolean;
   data?: T;
   error?: any;
+  fetch: () => Promise<void>
 }
 
 export function useFetch<T>(
-    fetch: (options: any) => Promise<T>, 
+    callback: (options: any) => Promise<T>, 
     options?: any
   ): UseFetchResponse<T> {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<T | undefined>();
   const [error, setError] = useState<any | undefined>();
 
-  async function updateData() {
+  async function fetch(): Promise<void> {
     setIsLoading(true);
     setData(undefined);
     try {
-      const newData = await fetch(options);
+      const newData = await callback(options);
       setIsLoading(false);
       setData(newData);
       setError(undefined);
@@ -33,10 +34,13 @@ export function useFetch<T>(
   const useEffectFn = typeof options === "object" ? useDeepCompareEffect : useEffect;
 
   useEffectFn(() => {
-    updateData();
+    fetch();
   }, [options]);
 
   return {
-    isLoading, data, error
+    isLoading,
+    data,
+    error,
+    fetch,
   };
 }
