@@ -5,7 +5,7 @@ import { ptBR } from "date-fns/locale";
 import { SafeAreaView, FlatList, Animated, View, ActivityIndicator, Alert } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { SvgFromUri } from "react-native-svg";
-import { Container, Header, Loading, Text, Swipeable } from "../../components";
+import { Container, Header, Text, Swipeable } from "../../components";
 import { ListItem } from "../../components/ListItem";
 import { useServices, useUserPlants } from "../../hooks";
 import colors from "../../styles/colors";
@@ -13,7 +13,7 @@ import { UserPlant } from "../../../domain";
 
 export function UserPlants() {
   const { userPlantRepository } = useServices();
-  const { isLoading, data: userPlants } = useUserPlants();
+  const { isLoading, data: userPlants, fetch: fetchUserPlants } = useUserPlants();
 
   async function handleOnDeletePlant({id, plant}: UserPlant){
     Alert.alert("Remover", `Deseja remover a ${plant.name}?`, [
@@ -26,6 +26,7 @@ export function UserPlants() {
         onPress: async () => {
           try {
             await userPlantRepository.removePlantToCurrentUser(id);
+            await fetchUserPlants();
           } catch (error) {
             Alert.alert("Não foi possível remover! 😥");
           }

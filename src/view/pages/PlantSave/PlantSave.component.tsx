@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import { SafeAreaView, View, Image, Platform, Alert } from "react-native";
 import { SvgFromUri } from "react-native-svg";
-import { Button, Text, VerticalContainer } from "../../components";
+import { Button, Loading, Text, VerticalContainer } from "../../components";
 import { Plant } from "../../../domain";
 import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 import { format, isBefore } from "date-fns";
@@ -22,6 +22,7 @@ interface Params {
 export function PlantSave() {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
   const { userPlantRepository } = useServices();
@@ -45,6 +46,7 @@ export function PlantSave() {
   }
 
   async function handleSave() {
+    setIsLoading(true)
     try {
       await userPlantRepository.addPlantToCurrentUser(
         plant.id,
@@ -60,7 +62,12 @@ export function PlantSave() {
       } as ConfirmationParams);
     } catch {
       Alert.alert("Não foi possível salvar. 😢");
+      setIsLoading(false)
     }
+  }
+
+  if(isLoading){
+    return <Loading />
   }
 
   return (
