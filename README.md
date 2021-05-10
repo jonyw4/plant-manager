@@ -4,6 +4,8 @@
 
 <p align="center">
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-preview">Preview</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-architecture">Architecture</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -34,6 +36,8 @@ I will try to apply some concepts that I learn by these years in a real life sit
 - CI / CD
 - Deploy (at least in Expo)
 
+## 📱 Preview
+Just enter in [Expo project page](https://expo.io/@jonycelio/projects/plantmanager) and scan the QR code using the Expo app.
 
 ## ⏳ Future / To do
 You can see what need to be done in [issues section.](https://github.com/jonyw4/plant-manager/issues)
