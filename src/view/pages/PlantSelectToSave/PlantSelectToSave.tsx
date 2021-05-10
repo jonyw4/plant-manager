@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {  View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ListPlants } from "../../cointaners";
+import { ListPlants } from "../../containers";
 import {
   Container,
   Text,
